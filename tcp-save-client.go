@@ -6,7 +6,7 @@ import "os"
 import "strconv"
 import "io"
 
-const BUFFERSIZE = 1024
+const BUFFERSIZE =  2048
 
 func fillString ( retunString string, toLength int ) string {
 	for {
@@ -67,19 +67,19 @@ func main() {
 	fmt.Println( "Send file size: ", fileName  )
 
 	sendBuffer := make([]byte, BUFFERSIZE)
-	str2Show := 0;
 
+	origSize := fileInfo.Size()
 	for {
 		_, err = file.Read(sendBuffer)
 		if err == io.EOF {
 			break
 		}
 		connection.Write(sendBuffer)
-		str2Show++;
-		fmt.Printf( "\rOn %s: ", str2Show )
+		origSize -= BUFFERSIZE 
+		fmt.Printf("\r Left (bytes): %d: ", (origSize / BUFFERSIZE * 100 ) )
 	}
 
-	fmt.Println("File has been sent, closing connection!")
+	fmt.Println("\nFile has been sent, closing connection!")
 	return
 
 }
