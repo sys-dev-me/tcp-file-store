@@ -68,15 +68,21 @@ func main() {
 
 	sendBuffer := make([]byte, BUFFERSIZE)
 
+	//save original size
 	origSize := fileInfo.Size()
 	for {
 		_, err = file.Read(sendBuffer)
 		if err == io.EOF {
 			break
 		}
+		// send part to server
 		connection.Write(sendBuffer)
+
+		// decrease original size
 		origSize -= BUFFERSIZE 
-		fmt.Printf("\r Left (bytes): %d: ", (origSize / BUFFERSIZE * 100 ) )
+
+		// print to output current size of non delivered bytes
+		fmt.Printf("\rLeft (bytes): %d", origSize )
 	}
 
 	fmt.Println("\nFile has been sent, closing connection!")
