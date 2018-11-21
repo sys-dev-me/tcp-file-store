@@ -2,7 +2,7 @@
 
 For server part
 
-Usave: ./tcp-save-server [DEFAULT_PORT]
+Usage: ./tcp-save-server [DEFAULT_PORT]
 
 If port not set will be used for listening default port 9001
 
