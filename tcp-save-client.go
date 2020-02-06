@@ -23,7 +23,7 @@ func fillString ( retunString string, toLength int ) string {
 func main() {
 
 	if len(os.Args) < 4 {
-		fmt.Println( "Usage: ftp-save-client [SERVER_ADDR] [PORT] [FILE_NAME]" )
+		fmt.Printf( "Usage: %s [SERVER_ADDR] [PORT] [FILE_NAME]\n", os.Args[0] )
 		os.Exit (1)
 	}
 
